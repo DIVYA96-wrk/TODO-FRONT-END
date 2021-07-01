@@ -9,6 +9,16 @@ import { Router } from '@angular/router';
 })
 export class LoginpageComponent implements OnInit {
 
+
+
+
+  constructor(private fb: FormBuilder, private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+
+
  
 
 }
