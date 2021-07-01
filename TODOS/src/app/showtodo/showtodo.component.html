@@ -1,0 +1,137 @@
+<h1 class="heado">WELCOME TO TODO APP</h1>
+<section>
+    
+    <div class="full">
+        
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4"><button type="button" class="btn btn-primary bttn major" (click)="register()">click here to get todo app
+
+            </button></div>
+            <div class="col-4"></div>
+        </div>
+        <div *ngIf="avail" class="row">
+           
+            <div class="col-12 forms">
+    
+                <form [formGroup]=eventForm>
+                    <h2>{{title}}</h2>
+                    <br>
+    
+                    <!-- <div class="mb-3">
+                        <label for="example2" class="form-label">Userid</label>
+                        <input type="text" class="form-control" id="example2" formControlName="userid">
+    
+                    </div>
+                    <div *ngIf="(eventForm.get('userid')?.touched||eventForm.get('userid')?.dirty)&&
+                    eventForm.get('userid')?.errors">
+                    <p>*Invalid Userid !!</p>
+                </div> -->
+    
+                    <div class="mb-3">
+                        <label for="example" class="form-label">Event</label>
+                        <input type="text" class="form-control" id="example" formControlName="events">
+    
+                    </div>
+                    <div *ngIf="(eventForm.get('events')?.touched||eventForm.get('events')?.dirty)&&
+                    eventForm.get('events')?.errors">
+                    <p>*Please Enter an Event !!</p>
+                </div>
+    
+                <br><br>
+                    <div class="one">
+                        <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+                        &nbsp; &nbsp; &nbsp;
+                         <button type="button" class="btn btn-primary" (click)="todoupdates()">Show all my todo updates</button>
+                     </div> 
+    
+    
+                </form>
+            </div>
+
+            
+        </div>
+
+
+        <div class="row">
+            <div  cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="results"
+            [cdkDropListConnectedTo]="[doneList]"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)" class="col-6">   
+                <div *ngIf="(show)">
+                    
+                    <table class="table  table-hover" >
+                        <thead>
+                            <tr>
+                                
+                                <th scope="col">TODO</th>
+                                <!-- <th scope="col">Update</th> -->
+                
+                            </tr>
+                        </thead>
+                        <tbody id="contents">
+                           
+                            <tr   *ngFor="let elements of results" cdkDrag >
+                                
+                                  
+                                <!-- <td>{{results.indexOf(elements)+1}}</td> -->
+                                <td  >{{elements}}</td>
+                                <!-- <td ><button  type="button" class="btn btn-primary bttn"
+                                        (click)="delete(userid,elements.Date,elements.Event)">Delete</button> &nbsp; &nbsp; <button type="button"
+                                        class="btn btn-primary bttn" (click)="update(userid,elements.Date,elements.Event)">Update</button>
+                                </td> -->
+                           
+                            </tr>
+                        
+                
+                
+                        </tbody>
+                    </table>
+                    </div>
+                
+                </div>
+
+                <div  cdkDropList
+                #doneList="cdkDropList"
+                [cdkDropListData]="dones"
+                [cdkDropListConnectedTo]="[todoList]"
+                class="example-list"
+                (cdkDropListDropped)="drop($event)" class="col-6">   
+                    <div *ngIf="(show)">
+                        
+                        <table class="table  table-hover" >
+                            <thead>
+                                <tr>
+                                    
+                                    <th scope="col">DONE</th>
+                                    <!-- <th scope="col">Update</th> -->
+                    
+                                </tr>
+                            </thead>
+                            <tbody id="contents">
+                               
+                                <tr   *ngFor="let elements of dones" cdkDrag >
+                                    
+                                      
+                                    <!-- <td>{{dones.indexOf(elements)+1}}</td> -->
+                                    <td  >{{elements}}</td>
+                                    <!-- <td ><button  type="button" class="btn btn-primary bttn"
+                                            (click)="delete(userid,elements.Date,elements.Event)">Delete</button> &nbsp; &nbsp; <button type="button"
+                                            class="btn btn-primary bttn" (click)="update(userid,elements.Date,elements.Event)">Update</button>
+                                    </td> -->
+                               
+                                </tr>
+                            
+                    
+                    
+                            </tbody>
+                        </table>
+                        </div>
+                    
+                    </div>
+        </div>
+    
+    </div>
+    </section>
